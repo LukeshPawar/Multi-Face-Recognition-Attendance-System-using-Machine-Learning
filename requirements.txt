@@ -4,4 +4,4 @@ pyyaml
 streamlit==1.22.0
 numpy
 pandas
-face_recognition
+face-recognition @ git+https://github.com/ageitgey/face_recognition.git
