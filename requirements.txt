@@ -4,3 +4,4 @@ pyyaml
 streamlit==1.22.0
 numpy
 pandas
+face_recognition
