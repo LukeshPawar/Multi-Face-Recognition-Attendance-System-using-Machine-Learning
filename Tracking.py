@@ -46,7 +46,7 @@ elif choice == "Webcam":
     st.title("Face Recognition App")
     st.write(WEBCAM_PROMPT)
 
-    if os.getenv("STREAMLIT_CLOUD"):  # Cloud check
+    if os.getenv("STREAMLIT_CLOUD"):  
         st.warning("⚠️ Webcam access is not supported on Streamlit Cloud.")
         st.stop()
 
