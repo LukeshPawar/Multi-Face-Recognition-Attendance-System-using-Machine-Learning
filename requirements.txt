@@ -1,15 +1,8 @@
-# Core dependencies
 cmake
-g++
-make
-
-# Python packages
 opencv-python
 pyyaml
 streamlit==1.22.0
 numpy
 pandas
-
-# Face recognition stack
 dlib
 face_recognition
