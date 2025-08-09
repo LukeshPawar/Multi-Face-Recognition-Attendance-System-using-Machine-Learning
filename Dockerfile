@@ -10,7 +10,12 @@ RUN apt-get update && apt-get install -y \
     libx11-dev \
     libgtk-3-dev \
     python3-dev \
+    libboost-all-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
     && rm -rf /var/lib/apt/lists/*
+
 
 # Set working directory
 WORKDIR /app
@@ -18,10 +23,11 @@ WORKDIR /app
 
 COPY . .
 
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install dlib==19.24.2
 
 RUN pip install --upgrade pip
-RUN pip install --upgrade pip setuptools wheel
-RUN pip install dlib==19.24.2 
+
 RUN pip install face-recognition-models==0.3.0 --only-binary :all:
 RUN pip install -r requirements.txt
 
