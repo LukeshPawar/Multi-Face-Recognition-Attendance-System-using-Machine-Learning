@@ -24,7 +24,7 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --upgrade pip setuptools wheel
-RUN pip install dlib==19.24.2
+RUN pip install dlib-bin
 
 RUN pip install --upgrade pip
 
