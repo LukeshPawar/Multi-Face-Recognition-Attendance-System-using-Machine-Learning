@@ -28,7 +28,7 @@ RUN pip install dlib-bin
 
 RUN pip install --upgrade pip
 
-RUN pip install face-recognition-models==0.3.0 --only-binary :all:
+RUN pip install face-recognition-models==0.3.0 
 RUN pip install -r requirements.txt
 
 
