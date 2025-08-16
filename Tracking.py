@@ -33,8 +33,8 @@ if choice == "Picture":
     
     if uploaded_images:
         for image in uploaded_images:
-            image = frg.load_image_file(image)
-            image, name, id = recognize(image, TOLERANCE)
+            image = frg.load_image_file(image)  # RGB
+            image, name, id = recognize(image, TOLERANCE, is_bgr=False)
             name_container.info(f"Name: {name}")
             id_container.success(f"ID: {id}")
             st.image(image)
@@ -63,8 +63,7 @@ elif choice == "Webcam":
             st.info("Please close other apps using the webcam and restart.")
             st.stop()
 
-        image, name, id = recognize(frame, TOLERANCE)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image, name, id = recognize(frame, TOLERANCE, is_bgr=True)
 
         name_container.info(f"Name: {name}")
         id_container.success(f"ID: {id}")
