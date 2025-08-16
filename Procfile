@@ -1,0 +1,1 @@
+web: streamlit run Tracking.py --server.port=${PORT:-8501} --server.enableCORS=false

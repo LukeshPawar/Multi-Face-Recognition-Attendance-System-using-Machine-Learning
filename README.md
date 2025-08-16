@@ -35,3 +35,20 @@ pip install opencv-python
 pip install cmake
 pip install pyyaml
 pip install streamlit==1.22.0
+```
+
+---
+
+## 🚀 Deploy
+
+- Docker:
+```bash
+docker build -t face-attendance .
+docker run -p 8501:8501 face-attendance
+```
+
+- Streamlit Cloud or similar PaaS:
+  - Ensure `requirements.txt`, `packages.txt`, `runtime.txt` are present (already included)
+  - Set the app entrypoint to `Tracking.py`
+
+If you see build errors related to `dlib` or `face_recognition`, make sure system packages in `packages.txt` are installed, and the Python version matches `runtime.txt`.

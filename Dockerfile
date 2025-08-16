@@ -1,38 +1,31 @@
 
 FROM python:3.9-slim
 
-# System dependencies for face_recognition and dlib
-RUN apt-get update && apt-get install -y \
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+# System dependencies for dlib/face_recognition and OpenCV (headless)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
+    python3-dev \
     libopenblas-dev \
     liblapack-dev \
-    libx11-dev \
-    libgtk-3-dev \
-    python3-dev \
-    libboost-all-dev \
-    libjpeg-dev \
+    libjpeg62-turbo-dev \
     libpng-dev \
-    libtiff-dev \
+    libtiff5 \
     && rm -rf /var/lib/apt/lists/*
 
-
-# Set working directory
 WORKDIR /app
 
+# Install Python deps first to leverage Docker layer caching
+COPY requirements.txt ./
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir -r requirements.txt
 
+# Copy the rest of the code
 COPY . .
-
-RUN pip install --upgrade pip setuptools wheel
-RUN pip install dlib-bin
-
-RUN pip install --upgrade pip
-
-RUN pip install face-recognition-models==0.3.0 
-RUN pip install -r requirements.txt
-
 
 EXPOSE 8501
 
-# Run the Streamlit app
 CMD ["streamlit", "run", "Tracking.py", "--server.port=8501", "--server.enableCORS=false"]
